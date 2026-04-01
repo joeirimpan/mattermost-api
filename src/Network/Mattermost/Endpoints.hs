@@ -450,12 +450,12 @@ mmGetListOfCustomEmoji page perPage =
 -- mmDeleteCustomEmoji emojiId =
 --   inDelete (printf "/emoji/%s" emojiId) noBody jsonResponse
 
--- -- | Get the image for a custom emoji.
--- --
--- --   /Permissions/: Must be authenticated.
--- mmGetCustomEmojiImage :: EmojiId -> Session -> IO ()
--- mmGetCustomEmojiImage emojiId =
---   inGet (printf "/emoji/%s/image" emojiId) noBody jsonResponse
+-- | Get the image for a custom emoji as raw bytes (PNG/GIF/etc).
+--
+--   /Permissions/: Must be authenticated.
+mmGetCustomEmojiImage :: Text -> Session -> IO B.ByteString
+mmGetCustomEmojiImage emojiId =
+  inGet (printf "/emoji/%s/image" emojiId) noBody bytestringResponse
 
 
 
